@@ -2,10 +2,26 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  
   <link rel="stylesheet" href="style.css">
   <title>To do list</title>
 </head>
 <body>
+  <h2>To do (8) List</h2>
+  <img src="https://mir-s3-cdn-cf.behance.net/project_modules/max_1200/ec438f28174777.56370cff82107.png" alt="pink panther" class="logo">
+  <div class="new-todo">
+    <h2>New item</h2>
+    <form>
+      <input type="text" name="name" id="to-name" placeholder="name">
+      <input type="text" name="description" id="to-description" placeholder="description">
+      <input type="date" name="date" id="to-date">
+      <select name="priority" id="to-priority">
+        <option value="low">Low</option>
+        <option value="med" selected>Medium</option>
+        <option value="high">High</option>
+      </select>
+    </form>
+  </div>
   <script src="./main.js"></script>
 </body>
 </html>
