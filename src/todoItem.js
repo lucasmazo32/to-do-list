@@ -1,13 +1,29 @@
+import { getStorage, setStorage } from './localStorageData';
+
 const moment = require('moment');
 
-const list = [];
+const localData = getStorage();
+
+let idCount = localData[0];
+
+// list default value creation
+const listStored = localData[1];
+let list = {};
+if (localData[1] !== null) {
+  list = listStored;
+}
+
+console.log(idCount);
+console.log(list);
 
 class Item {
-  constructor(name, description, date, importance) {
+  constructor(id, name, description, date, importance, project) {
+    this.id = id;
     this.name = name;
     this.description = description;
     this.date = date;
     this.importance = importance;
+    this.project = project;
   }
 
   fromNow() {
@@ -22,10 +38,11 @@ class Item {
   }
 }
 
-const toDoList = (name, description, date, importance) => {
-  const newItem = new Item(name, description, date, importance);
-  list.push(newItem);
-  return list;
+const toDoList = (name, description, date, importance, project) => {
+  idCount += 1;
+  const newItem = new Item(idCount, name, description, date, importance, project);
+  list[idCount] = newItem;
+  setStorage(idCount, list);
 };
 
 export default toDoList;

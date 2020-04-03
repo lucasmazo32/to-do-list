@@ -2,7 +2,7 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  
+  <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css" integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
   <link rel="stylesheet" href="style.css">
   <title>To do list</title>
 </head>
@@ -12,14 +12,18 @@
   <div class="new-todo">
     <h2>New item</h2>
     <form>
-      <input type="text" name="name" id="to-name" placeholder="name">
-      <input type="text" name="description" id="to-description" placeholder="description">
-      <input type="date" name="date" id="to-date">
-      <select name="priority" id="to-priority">
+      <input type="text" name="name" required id="to-name" placeholder="name">
+      <input type="text" name="description" required id="to-description" placeholder="description">
+      <input type="date" required name="date" id="to-date">
+      <select required name="priority" id="to-priority">
         <option value="low">Low</option>
         <option value="med" selected>Medium</option>
         <option value="high">High</option>
       </select>
+      <select required name="project" id="to-project">
+        <option value="default">Catch the panther!</option>
+      </select>
+      <input type="submit" value="Add to-do!">
     </form>
   </div>
   <script src="./main.js"></script>

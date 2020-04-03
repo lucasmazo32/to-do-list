@@ -1,2 +1,4 @@
 import './style.scss';
-import toDoList from './todoItem';
+import dataCollection from './dataCollection';
+
+dataCollection();
