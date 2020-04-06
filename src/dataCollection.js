@@ -1,4 +1,4 @@
-import toDoList from './todoItem';
+import { toDoList } from './todoItem';
 
 const form = document.querySelector('form');
 const nameField = document.querySelector('#to-name');
@@ -18,6 +18,7 @@ const dataToList = () => {
     const name = nameField.value;
     const description = descriptionField.value;
     const date = new Date(dateField.value);
+    date.setDate(date.getDate() + 1);
     const priority = priorityField.value;
     const project = projectFiled.value;
     emptyValue([nameField, descriptionField, dateField, priorityField, projectFiled]);
