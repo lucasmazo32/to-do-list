@@ -29,6 +29,7 @@ const newProjectBtn = document.querySelector('.new-project');
 const newProject = document.querySelector('.project-form');
 const newProjectName = document.querySelector('.project-name');
 const closeProject = document.querySelector('.close-project');
+const projectTable = document.querySelector('.project-table');
 
 const localData = getProject();
 
@@ -42,6 +43,15 @@ if (localData[1] !== null) {
 }
 
 const addSingleOption = (key) => {
+  const addTitleHeader = document.createElement('thead');
+  const addTitle = document.createElement('th');
+  addTitle.textContent = projectList[key];
+  addTitleHeader.classList.add('thead-light');
+  addTitleHeader.append(addTitle);
+  const addBody = document.createElement('tbody');
+  addBody.classList.add(`project-${key}`);
+  projectTable.append(addTitleHeader, addBody);
+
   const newOption = document.createElement('option');
   newOption.textContent = projectList[key];
   newOption.value = key;
@@ -82,7 +92,7 @@ const emptyValue = (array) => {
   });
 };
 
-const organizeStorage = (data, fromNow, cond = true) => {
+const organizeStorage = (data, fromNow, cond) => {
   const newEntry = document.createElement('tr');
   const title = document.createElement('th');
   const dueDate = document.createElement('td');
@@ -99,10 +109,13 @@ const organizeStorage = (data, fromNow, cond = true) => {
   const btns = createBtns(data.id);
 
   newEntry.append(title, dueDate, importance, btns[0], btns[1]);
-  if (cond) {
+  if (cond === 'default') {
     storedTable.append(newEntry);
-  } else {
+  } else if (cond === 'recent') {
     newTable.append(newEntry);
+  } else {
+    const location = document.querySelector(`.project-${cond}`);
+    location.append(newEntry);
   }
   title.onclick = () => {
     descriptionTitle.textContent = data.name;
@@ -151,7 +164,7 @@ const dataToList = () => {
     const project = projectFiled.value;
     emptyValue([nameField, descriptionField, dateField, priorityField, projectFiled]);
     const data = toDoList(name, description, date, priority, project);
-    organizeStorage(data, fromNow(date), false);
+    organizeStorage(data, fromNow(date), 'recent');
     form.classList.toggle('closed');
     return false;
   };

@@ -24,7 +24,7 @@ const arrayCreation = () => {
     });
     infoArray.sort((a, b) => new Date(a.date) - new Date(b.date));
     infoArray.forEach((data) => {
-      organizeStorage(data, fromNow(new Date(data.date)));
+      organizeStorage(data, fromNow(new Date(data.date)), data.project);
     });
     closeDescription.onclick = () => {
       descriptionOutput.classList.toggle('closed');
