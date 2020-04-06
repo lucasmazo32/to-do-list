@@ -45,6 +45,7 @@ a.btn-info {
   font-size: 1.2rem;
   cursor: pointer;
   padding: 5px;
+  pointer-events: fill;
 }
 
 .title-clickable {
@@ -61,12 +62,79 @@ a.btn-info {
   opacity: 1;
   overflow: hidden;
   padding: 10px 30px;
+  pointer-events: none;
   transition: opacity 0.5s ease, height 1s ease;
+  z-index: 3;
 }
 
 .description-info.closed {
   height: 0;
   overflow: hidden;
   opacity: 0;
+  transition: opacity 0.5s ease, height 1s ease;
+}
+
+// new form 
+
+.buttons {
+  display: flex;
+  justify-content: space-evenly;
+}
+
+.new-to-do {
+  display: flex;
+  flex-flow: column;
+  position: absolute;
+  background-color: lightgray;
+  top: 2.8rem;
+  width: 80%;
+  left: 10%;
+  border-radius: 10px;
+  padding: 10px;
+  height: 20rem;
+  opacity: 1;
+  pointer-events: inherit;
+  transition: opacity 0.5s ease, height 1s ease;
+  z-index: 2;
+  * {
+    margin-top: 5px;
+    margin-bottom: 5px;
+  }
+}
+
+.new-to-do.closed {
+  height: 0;
+  opacity: 0;
+  pointer-events: none;
+  transition: opacity 0.5s ease, height 1s ease;
+}
+
+// new project 
+
+.project-form {
+  display: flex;
+  flex-flow: column;
+  position: absolute;
+  background-color: lightgray;
+  top: 2.8rem;
+  width: 80%;
+  left: 10%;
+  border-radius: 10px;
+  padding: 10px;
+  height: 7.5rem;
+  opacity: 1;
+  pointer-events: inherit;
+  transition: opacity 0.5s ease, height 1s ease;
+  z-index: 2;
+  * {
+    margin-top: 5px;
+    margin-bottom: 5px;
+  }
+}
+
+.project-form.closed {
+  height: 0;
+  opacity: 0;
+  pointer-events: none;
   transition: opacity 0.5s ease, height 1s ease;
 }

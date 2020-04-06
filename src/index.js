@@ -1,5 +1,5 @@
 import './style.scss';
-import { dataToList } from './domChanges';
+import { dataToList, projectForm } from './domChanges';
 import { arrayCreation } from './dataManipulation';
 
 dataToList();
