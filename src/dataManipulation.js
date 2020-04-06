@@ -12,6 +12,9 @@ const fromNow = (date) => moment(date).calendar(null, {
   sameElse: 'DD/MM/YYYY',
 });
 
+const closeDescription = document.querySelector('.close-field');
+const descriptionOutput = document.querySelector('.description-info');
+
 const arrayCreation = () => {
   const list = listInformation();
   if (Object.keys(list).length !== 0) {
@@ -23,6 +26,9 @@ const arrayCreation = () => {
     infoArray.forEach((data) => {
       organizeStorage(data, fromNow(new Date(data.date)));
     });
+    closeDescription.onclick = () => {
+      descriptionOutput.classList.toggle('closed');
+    };
   }
 };
 

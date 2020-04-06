@@ -1,7 +1,17 @@
 import { toDoList } from './todoItem';
-import { fromNow } from './dataManipulation';
 
-const form = document.querySelector('form');
+const moment = require('moment');
+
+const fromNow = (date) => moment(date).calendar(null, {
+  sameDay: '[Today]',
+  nextDay: '[Tomorrow]',
+  nextWeek: 'dddd',
+  lastDay: '[Yesterday]',
+  lastWeek: '[Last] dddd',
+  sameElse: 'DD/MM/YYYY',
+});
+
+const form = document.querySelector('.new-to-do');
 const nameField = document.querySelector('#to-name');
 const descriptionField = document.querySelector('#to-description');
 const dateField = document.querySelector('#to-date');
@@ -9,6 +19,9 @@ const priorityField = document.querySelector('#to-priority');
 const projectFiled = document.querySelector('#to-project');
 const storedTable = document.querySelector('.stored-table');
 const newTable = document.querySelector('.new-table');
+const descriptionOutput = document.querySelector('.description-info');
+const descriptionTitle = document.querySelector('.description-title');
+const descriptionContent = document.querySelector('.description-content');
 
 const createBtns = (id) => {
   const changeTd = document.createElement('td');
@@ -41,14 +54,14 @@ const emptyValue = (array) => {
 const organizeStorage = (data, fromNow, cond = true) => {
   const newEntry = document.createElement('tr');
   const title = document.createElement('th');
-  const description = document.createElement('td');
   const dueDate = document.createElement('td');
   const project = document.createElement('td');
   const importance = document.createElement('td');
 
   title.textContent = data.name;
   title.setAttribute('scope', 'row');
-  description.textContent = data.description;
+  title.classList.add('title-clickable');
+  title.setAttribute('id', `title-${data.id}`);
   dueDate.textContent = fromNow;
   project.textContent = data.project;
   importance.textContent = data.importance;
@@ -56,12 +69,17 @@ const organizeStorage = (data, fromNow, cond = true) => {
 
   const btns = createBtns(data.id);
 
-  newEntry.append(title, description, dueDate, project, importance, btns[0], btns[1]);
+  newEntry.append(title, dueDate, project, importance, btns[0], btns[1]);
   if (cond) {
     storedTable.append(newEntry);
   } else {
     newTable.append(newEntry);
   }
+  title.onclick = () => {
+    descriptionTitle.textContent = data.name;
+    descriptionContent.textContent = data.description;
+    descriptionOutput.classList.toggle('closed');
+  };
 };
 
 const dataToList = () => {

@@ -7,11 +7,15 @@
   <title>To do list</title>
 </head>
 <body>
+  <div class="description-info closed">
+    <span class="description-title"></span><span class="close-field">x</span>
+    <p class="description-content"></p>
+  </div>
   <h2>To do (8) List</h2>
   <img src="https://mir-s3-cdn-cf.behance.net/project_modules/max_1200/ec438f28174777.56370cff82107.png" alt="pink panther" class="logo">
   <div class="new-todo">
     <h2>New item</h2>
-    <form>
+    <form class="new-to-do">
       <input type="text" name="name" required id="to-name" placeholder="name">
       <input type="text" name="description" required id="to-description" placeholder="description">
       <input type="date" required name="date" id="to-date">
@@ -32,7 +36,6 @@
       <thead class="thead-light">
         <tr>
           <th scope="col">Title</th>
-          <th scope="col">Description</th>
           <th scope="col">Due date</th>
           <th scope="col">Project</th>
           <th scope="col">Importance</th>
@@ -43,12 +46,11 @@
       <tbody class="new-table table-hover">
       </tbody>
     </table>
-    <h3>Previous list</h3>
+    <h3>Catch the panther!</h3>
     <table class="table table-hover">
       <thead class="thead-light">
         <tr>
           <th scope="col">Title</th>
-          <th scope="col">Description</th>
           <th scope="col">Due date</th>
           <th scope="col">Project</th>
           <th scope="col">Importance</th>
