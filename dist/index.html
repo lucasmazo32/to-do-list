@@ -17,14 +17,27 @@
       <input type="date" required name="date" id="to-date">
       <select required name="priority" id="to-priority">
         <option value="low">Low</option>
-        <option value="med" selected>Medium</option>
+        <option value="medium" selected>Medium</option>
         <option value="high">High</option>
       </select>
       <select required name="project" id="to-project">
-        <option value="default">Catch the panther!</option>
+        <option value="catch the panther!">Catch the panther!</option>
       </select>
       <input type="submit" value="Add to-do!">
     </form>
+  </div>
+  <div class="stored-items">
+    <table class="stored-table">
+      <tr>
+        <th>Title</th>
+        <th>Description</th>
+        <th>Due date</th>
+        <th>Project</th>
+        <th>Importance</th>
+        <th>Change</th>
+        <th>Delete</th>
+      </tr>
+    </table>
   </div>
   <script src="./main.js"></script>
 </body>

@@ -1,6 +1,6 @@
 import './style.scss';
-import dataCollection from './dataCollection';
+import { dataToList } from './domChanges';
 import { arrayCreation } from './dataManipulation';
 
-dataCollection();
+dataToList();
 arrayCreation();
