@@ -5,3 +5,33 @@
 .logo {
   width: 50px;
 }
+
+.stored-table, .new-table {
+  width: 100%;
+}
+
+td, th {
+  text-transform: capitalize;
+}
+
+.high {
+  font-weight: bold;
+}
+
+.low {
+  font-weight: lighter;
+}
+
+a.btn-danger {
+  color: white;
+  &:hover {
+    color: white;
+  }
+}
+
+a.btn-info {
+  color: white;
+  &:hover {
+    color: white;
+  }
+}

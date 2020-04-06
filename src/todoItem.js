@@ -27,6 +27,7 @@ const toDoList = (name, description, date, importance, project) => {
   const newItem = new Item(idCount, name, description, date, importance, project);
   list[idCount] = newItem;
   setStorage(idCount, list);
+  return newItem;
 };
 
 const listInformation = () => list;

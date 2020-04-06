@@ -26,4 +26,4 @@ const arrayCreation = () => {
   }
 };
 
-export { arrayCreation };
+export { arrayCreation, fromNow };
