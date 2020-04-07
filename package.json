@@ -31,6 +31,7 @@
     "webpack-cli": "^3.3.11"
   },
   "dependencies": {
+    "faker": "^4.1.0",
     "moment": "^2.24.0"
   }
 }

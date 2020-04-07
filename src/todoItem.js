@@ -32,4 +32,20 @@ const toDoList = (name, description, date, importance, project) => {
 
 const listInformation = () => list;
 
-export { toDoList, listInformation };
+const changeItem = (id, name, description, date, priority) => {
+  list[id].name = name;
+  list[id].description = description;
+  list[id].date = date;
+  list[id].importance = priority;
+  setStorage(idCount, list);
+};
+
+const deleteItem = (id) => {
+  const succ = delete list[id];
+  setStorage(idCount, list);
+  return succ;
+};
+
+export {
+  toDoList, listInformation, changeItem, deleteItem,
+};

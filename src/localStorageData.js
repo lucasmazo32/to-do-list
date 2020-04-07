@@ -33,4 +33,6 @@ const getProject = () => {
   return [id, list];
 };
 
-export { getStorage, setStorage, setProject, getProject };
+export {
+  getStorage, setStorage, setProject, getProject,
+};

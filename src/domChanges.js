@@ -1,4 +1,6 @@
-import { toDoList } from './todoItem';
+import {
+  toDoList, listInformation, changeItem, deleteItem,
+} from './todoItem';
 import { setProject, getProject } from './localStorageData';
 
 const moment = require('moment');
@@ -12,6 +14,7 @@ const fromNow = (date) => moment(date).calendar(null, {
   sameElse: 'DD/MM/YYYY',
 });
 
+// new form
 const form = document.querySelector('.new-to-do');
 const nameField = document.querySelector('#to-name');
 const descriptionField = document.querySelector('#to-description');
@@ -19,18 +22,32 @@ const dateField = document.querySelector('#to-date');
 const priorityField = document.querySelector('#to-priority');
 const projectFiled = document.querySelector('#to-project');
 const storedTable = document.querySelector('.stored-table');
+const newItem = document.querySelector('.new-item');
+const closeNew = document.querySelector('.close-new');
+// table
 const newTable = document.querySelector('.new-table');
 const descriptionOutput = document.querySelector('.description-info');
 const descriptionTitle = document.querySelector('.description-title');
 const descriptionContent = document.querySelector('.description-content');
-const newItem = document.querySelector('.new-item');
-const closeNew = document.querySelector('.close-new');
+// new project
 const newProjectBtn = document.querySelector('.new-project');
 const newProject = document.querySelector('.project-form');
 const newProjectName = document.querySelector('.project-name');
 const closeProject = document.querySelector('.close-project');
 const projectTable = document.querySelector('.project-table');
+// change form
+const changeForm = document.querySelector('.change-to-do');
+const closeChange = document.querySelector('.close-change');
+const nameChange = document.querySelector('#change-name');
+const descriptionChange = document.querySelector('#change-description');
+const dateChange = document.querySelector('#change-date');
+const importanceChange = document.querySelector('#change-priority');
+// confirmation
+const confirmationBox = document.querySelector('.confirmation');
+const trueConfirm = document.querySelector('.confirmation-true');
+const falseConfirm = document.querySelector('.confirmation-false');
 
+// getting the data from the localhost
 const localData = getProject();
 
 let projectId = localData[0];
@@ -64,6 +81,35 @@ const appendProjectsOptions = () => {
   });
 };
 
+const clickChange = (btn, id) => {
+  btn.onclick = () => {
+    const listObject = listInformation()[id];
+    changeForm.classList.toggle('closed');
+    changeForm.setAttribute('id', `form-${id}`);
+    nameChange.value = listObject.name;
+    descriptionChange.value = listObject.description;
+    const date = new Date(listObject.date);
+    date.setDate(date.getDate() - 1);
+    dateChange.value = date.toISOString().slice(0, 10);
+    importanceChange.value = listObject.importance;
+  };
+};
+
+const clickDelete = (btn, id) => {
+  btn.onclick = () => {
+    confirmationBox.classList.toggle('closed');
+    trueConfirm.onclick = () => {
+      const tableRow = document.querySelector(`.container-${id}`);
+      tableRow.classList.add('just-deleted');
+      window.setTimeout(() => {
+        tableRow.remove();
+      }, 3000);
+      deleteItem(id);
+      confirmationBox.classList.toggle('closed');
+    };
+  };
+};
+
 const createBtns = (id) => {
   const changeTd = document.createElement('td');
   const deleteTd = document.createElement('td');
@@ -73,12 +119,14 @@ const createBtns = (id) => {
   changeBtn.classList.add('btn');
   changeBtn.classList.add('btn-info');
   changeBtn.setAttribute('id', `change-${id}`);
+  clickChange(changeBtn, id);
 
   const deleteBtn = document.createElement('a');
   deleteBtn.textContent = 'Delete';
   deleteBtn.classList.add('btn');
   deleteBtn.classList.add('btn-danger');
   deleteBtn.setAttribute('id', `delete-${id}`);
+  clickDelete(deleteBtn, id);
 
   changeTd.append(changeBtn);
   deleteTd.append(deleteBtn);
@@ -86,14 +134,10 @@ const createBtns = (id) => {
   return [changeTd, deleteTd];
 };
 
-const emptyValue = (array) => {
-  array.forEach((element) => {
-    element.value = '';
-  });
-};
 
 const organizeStorage = (data, fromNow, cond) => {
   const newEntry = document.createElement('tr');
+  newEntry.classList.add(`container-${data.id}`);
   const title = document.createElement('th');
   const dueDate = document.createElement('td');
   const importance = document.createElement('td');
@@ -124,6 +168,35 @@ const organizeStorage = (data, fromNow, cond) => {
   };
 };
 
+const changeFromDOM = (id, date) => {
+  const tableRow = document.querySelector(`.container-${id}`);
+  tableRow.remove();
+  const data = listInformation()[id];
+  organizeStorage(data, fromNow(date), 'recent');
+};
+
+const changeFormActions = () => {
+  changeForm.onsubmit = () => {
+    const id = Number(changeForm.getAttribute('id').slice(5));
+    const name = nameChange.value;
+    const description = descriptionChange.value;
+    const date = new Date(dateChange.value);
+    date.setDate(date.getDate() + 1);
+    const priority = importanceChange.value;
+    changeItem(id, name, description, date, priority);
+    changeForm.classList.toggle('closed');
+    changeFromDOM(id, date);
+    return false;
+  };
+};
+
+
+const emptyValue = (array) => {
+  array.forEach((element) => {
+    element.value = '';
+  });
+};
+
 const toggleActions = () => {
   newItem.onclick = () => {
     form.classList.toggle('closed');
@@ -136,6 +209,12 @@ const toggleActions = () => {
   };
   closeProject.onclick = () => {
     newProject.classList.toggle('closed');
+  };
+  closeChange.onclick = () => {
+    changeForm.classList.toggle('closed');
+  };
+  falseConfirm.onclick = () => {
+    confirmationBox.classList.toggle('closed');
   };
 };
 
@@ -151,10 +230,7 @@ const projectForm = () => {
   };
 };
 
-const dataToList = () => {
-  projectForm();
-  toggleActions();
-  appendProjectsOptions();
+const newToDo = () => {
   form.onsubmit = () => {
     const name = nameField.value;
     const description = descriptionField.value;
@@ -168,6 +244,14 @@ const dataToList = () => {
     form.classList.toggle('closed');
     return false;
   };
+};
+
+const dataToList = () => {
+  changeFormActions();
+  projectForm();
+  toggleActions();
+  appendProjectsOptions();
+  newToDo();
 };
 
 export { dataToList, organizeStorage };
