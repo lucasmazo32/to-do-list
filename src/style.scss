@@ -5,3 +5,180 @@
 .logo {
   width: 50px;
 }
+
+.stored-table, .new-table {
+  width: 100%;
+}
+
+td, th {
+  text-transform: capitalize;
+}
+
+.high {
+  font-weight: bold;
+}
+
+.low {
+  font-weight: lighter;
+}
+
+a.btn-danger {
+  color: white;
+  &:hover {
+    color: white;
+  }
+}
+
+a.btn-info {
+  color: white;
+  &:hover {
+    color: white;
+  }
+}
+
+.description-title {
+  font-size: 1.5rem;
+}
+
+.close-field {
+  float: right;
+  font-size: 1.2rem;
+  cursor: pointer;
+  padding: 5px;
+}
+
+.title-clickable {
+  cursor: pointer;
+}
+
+.description-info {
+  position: fixed;
+  height: 10rem;
+  top: 10vh;
+  left: 30%;
+  width: 40%;
+  background-color: white;
+  border: 2px solid lightgray;
+  opacity: 1;
+  overflow: hidden;
+  padding: 10px 30px;
+  pointer-events: inherit;
+  border-radius: 10px;
+  transition: opacity 0.5s ease, height 1s ease;
+  z-index: 3;
+}
+
+.description-info.closed {
+  height: 0;
+  overflow: hidden;
+  opacity: 0;
+  pointer-events: none;
+  transition: opacity 0.5s ease, height 1s ease;
+}
+
+// new form 
+
+.buttons {
+  display: flex;
+  justify-content: space-evenly;
+}
+
+.new-to-do, .change-to-do {
+  display: flex;
+  flex-flow: column;
+  position: fixed;
+  background-color: lightgray;
+  top: 2.8rem;
+  width: 80%;
+  left: 10%;
+  border-radius: 10px;
+  padding: 10px;
+  height: 20rem;
+  opacity: 1;
+  pointer-events: inherit;
+  transition: opacity 0.5s ease, height 1s ease;
+  z-index: 2;
+  * {
+    margin-top: 5px;
+    margin-bottom: 5px;
+  }
+}
+
+.new-to-do.closed, .change-to-do.closed {
+  height: 0;
+  opacity: 0;
+  pointer-events: none;
+  transition: opacity 0.5s ease, height 1s ease;
+}
+
+// change to do
+
+.change-to-do {
+  height: 16.2rem;
+}
+
+// new project 
+
+.project-form {
+  display: flex;
+  flex-flow: column;
+  position: fixed;
+  background-color: lightgray;
+  top: 2.8rem;
+  width: 80%;
+  left: 10%;
+  border-radius: 10px;
+  padding: 10px;
+  height: 7.5rem;
+  opacity: 1;
+  pointer-events: inherit;
+  transition: opacity 0.5s ease, height 1s ease;
+  z-index: 2;
+  * {
+    margin-top: 5px;
+    margin-bottom: 5px;
+  }
+}
+
+.project-form.closed {
+  height: 0;
+  opacity: 0;
+  pointer-events: none;
+  transition: opacity 0.5s ease, height 1s ease;
+}
+
+// deletion confirmation
+
+.confirmation {
+  position: fixed;
+  display: flex;
+  flex-flow: column;
+  left: calc(50% - 200px);
+  padding: 20px;
+  border: 2px solid lightgray;
+  border-radius: 15px;
+  top: 40px;
+  width: 400px;
+  height: 9.6rem;
+  pointer-events: inherit;
+  opacity: 1;
+  background-color: white;
+  transition: height 0.3s ease, opacity 0.7s ease;
+}
+
+.confirmation.closed {
+  pointer-events: none;
+  height: 0;
+  opacity: 0;
+  transition: height 1s ease, opacity 0.5s ease;
+}
+
+.confirmation-header {
+  font-weight: bold;
+  border-bottom: 1px solid lightgray;
+  margin-bottom: 10px;
+}
+
+.confirmation-text {
+  margin-bottom: 10px;
+}
