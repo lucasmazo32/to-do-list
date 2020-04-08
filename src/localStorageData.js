@@ -12,6 +12,7 @@ const getStorage = () => {
   }
   return [id, list];
 };
+
 const setStorage = (idCount, list) => {
   localStorage['id-count'] = idCount;
   localStorage['current-list'] = JSON.stringify(list);

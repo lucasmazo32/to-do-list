@@ -1,7 +1,5 @@
 import { getStorage, setStorage } from './localStorageData';
 
-const moment = require('moment');
-
 const localData = getStorage();
 
 let idCount = localData[0];
@@ -13,9 +11,6 @@ if (localData[1] !== null) {
   list = listStored;
 }
 
-console.log(idCount);
-console.log(list);
-
 class Item {
   constructor(id, name, description, date, importance, project) {
     this.id = id;
@@ -25,17 +20,6 @@ class Item {
     this.importance = importance;
     this.project = project;
   }
-
-  fromNow() {
-    return moment(this.date).calendar(null, {
-      sameDay: '[Today]',
-      nextDay: '[Tomorrow]',
-      nextWeek: 'dddd',
-      lastDay: '[Yesterday]',
-      lastWeek: '[Last] dddd',
-      sameElse: 'DD/MM/YYYY',
-    });
-  }
 }
 
 const toDoList = (name, description, date, importance, project) => {
@@ -43,6 +27,25 @@ const toDoList = (name, description, date, importance, project) => {
   const newItem = new Item(idCount, name, description, date, importance, project);
   list[idCount] = newItem;
   setStorage(idCount, list);
+  return newItem;
 };
 
-export default toDoList;
+const listInformation = () => list;
+
+const changeItem = (id, name, description, date, priority) => {
+  list[id].name = name;
+  list[id].description = description;
+  list[id].date = date;
+  list[id].importance = priority;
+  setStorage(idCount, list);
+};
+
+const deleteItem = (id) => {
+  const succ = delete list[id];
+  setStorage(idCount, list);
+  return succ;
+};
+
+export {
+  toDoList, listInformation, changeItem, deleteItem,
+};
