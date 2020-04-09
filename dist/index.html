@@ -1,0 +1,101 @@
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css" integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
+  <link rel="stylesheet" href="style.css">
+  <title>To do list</title>
+</head>
+<body>
+  <div class="description-info closed">
+    <span class="description-title"></span><span class="close-field">x</span>
+    <p class="description-content"></p>
+  </div>
+  <div class="confirmation closed">
+    <span class="confirmation-header">Confirmation</span>
+    <span class="confirmation-text">C'mon, do you really want to delete this entry?</span>
+    <div class="buttons">
+      <button class="btn btn-info confirmation-true">I mean, duh!</button>
+      <button class="btn btn-danger confirmation-false">Not really</button>
+    </div>
+  </div>
+  <h2>To do (8) List</h2>
+  <img src="https://mir-s3-cdn-cf.behance.net/project_modules/max_1200/ec438f28174777.56370cff82107.png" alt="pink panther" class="logo">
+  <div class="new-todo">
+    <button class="btn btn-info new-item">New item</button>
+    <button class="btn btn-info new-project">New project</button>
+    <form class="new-to-do closed">
+      <input class="form-control" type="text" name="name" required id="to-name" placeholder="name">
+      <input class="form-control" type="text" name="description" required id="to-description" placeholder="description">
+      <input class="form-control" type="date" required name="date" id="to-date">
+      <select class="form-control" required name="priority" id="to-priority">
+        <option value="low">Low</option>
+        <option value="medium" selected>Medium</option>
+        <option value="high">High</option>
+      </select>
+      <select class="form-control" required name="project" id="to-project">
+        <option value="default">Catch the panther!</option>
+      </select>
+      <div class="buttons">
+        <input type="submit" class="btn btn-info" value="Add to-do!">
+        <a class="btn btn-danger close-new">Close</a>
+      </div>
+    </form>
+    <form class='project-form closed'>
+      <input class="form-control project-name" type="text" placeholder="Project Name" required>
+      <div class="buttons">
+        <input class="btn btn-info" type="submit" value="Add project!">
+        <a class="btn btn-danger close-project">Close</a>
+      </div>
+    </form>
+    <form class="change-to-do closed">
+      <input class="form-control" type="text" name="name" required id="change-name" placeholder="name">
+      <input class="form-control" type="text" name="description" required id="change-description" placeholder="description">
+      <input class="form-control" type="date" required name="date" id="change-date">
+      <select class="form-control" required name="priority" id="change-priority">
+        <option value="low">Low</option>
+        <option value="medium" selected>Medium</option>
+        <option value="high">High</option>
+      </select>
+      <div class="buttons">
+        <input type="submit" class="btn btn-info" value="Update">
+        <a class="btn btn-danger close-change">Close</a>
+      </div>
+    </form>
+  </div>
+  <div class="stored-items">
+    <h3>Recent addition/changes</h3>
+    <table class="table table-hover">
+      <thead class="thead-light">
+        <tr>
+          <th scope="col">Title</th>
+          <th scope="col">Due date</th>
+          <th scope="col">Importance</th>
+          <th scope="col">Change</th>
+          <th scope="col">Delete</th>
+        </tr>
+      </thead>
+      <tbody class="new-table table-hover">
+      </tbody>
+    </table>
+    <button class="organize btn btn-info">Organize Projects</button>
+    <table class="table table-hover project-table">
+      <thead class="thead-light">
+        <tr>
+          <th scope="col">Title</th>
+          <th scope="col">Due date</th>
+          <th scope="col">Importance</th>
+          <th scope="col">Change</th>
+          <th scope="col">Delete</th>
+        </tr>
+      </thead>
+      <thead class="thead-light">
+        <th>Catch the panther!</th>
+      </thead>
+      <tbody class="stored-table">
+      </tbody>
+    </table>
+  </div>
+  <script src="./main.js"></script>
+</body>
+</html>
