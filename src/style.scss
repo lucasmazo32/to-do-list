@@ -117,6 +117,24 @@ a.btn-info {
   height: 16.2rem;
 }
 
+.organize {
+  pointer-events: none;
+  opacity: 0;
+  height: 0;
+  margin: 10px auto;
+  padding: 0;
+  transition: 0.5s all ease;
+}
+
+.organize.available {
+  pointer-events: inherit;
+  opacity: 1;
+  height: 2.5rem;
+  margin: 10px auto;
+  padding: .375rem .75rem;
+  transition: 0.5s all ease;
+}
+
 // new project 
 
 .project-form {

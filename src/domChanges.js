@@ -46,6 +46,8 @@ const importanceChange = document.querySelector('#change-priority');
 const confirmationBox = document.querySelector('.confirmation');
 const trueConfirm = document.querySelector('.confirmation-true');
 const falseConfirm = document.querySelector('.confirmation-false');
+// organize data button
+const organizeBtn = document.querySelector('.organize');
 
 // getting the data from the localhost
 const localData = getProject();
@@ -58,6 +60,12 @@ let projectList = {};
 if (localData[1] !== null) {
   projectList = listStored;
 }
+
+// organize btn 
+
+organizeBtn.onclick = () => {
+  location.reload();
+};
 
 const addSingleOption = (key) => {
   const addTitleHeader = document.createElement('thead');
@@ -157,6 +165,9 @@ const organizeStorage = (data, fromNow, cond) => {
     storedTable.append(newEntry);
   } else if (cond === 'recent') {
     newTable.append(newEntry);
+    if ( !organizeBtn.classList.contains('available') ){
+      organizeBtn.classList.add('available');
+    }
   } else {
     const location = document.querySelector(`.project-${cond}`);
     location.append(newEntry);

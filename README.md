@@ -27,6 +27,10 @@ After clonning and changing directory, run in your terminal:
 
 > ``` npm install ```
 
+After installing the node modules, run the following command to start the server in dev mode:
+
+> ``` npm run start:dev ```
+
 # License
 
 > MIT
